@@ -1,0 +1,42 @@
+const Discord = require('discord.js');
+const bot = new Discord.Client();
+const prefix = 'k!';
+const fs = require('fs');
+
+const token = 'NzQ3NzMwMzc2NTE2MDQyNzkz.X0TILQ.VNmyMS-W-yGAjfQe0-Zyxu6JgSc';
+
+var owner = 'StickyPistonn#8337';
+var credit = 'Y4pv#4919 and AuthenticSRNL彡#1214 for providing Testing Server. Kaneki S#0101 for testing the bot';
+var credit1 = 'Kaneki S#0101';
+var help = 'help staff youtube members kick ban permmute credit creator';
+
+bot.commands = new Discord.Collection();
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	client.commands.set(command.name, command);
+}
+
+bot.once('ready', () => {
+    console.log('Kanna has been loaded!')
+    bot.user.setActivity("with you :> | k!help", { type: "PLAYING" });
+})
+
+bot.on('message', message => {
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const commandName = args.shift().toLowerCase();
+
+    const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
+    try {
+        command.execute(message, args);
+    } catch (error) {
+        console.error(error);
+        message.reply("There's an issue with this command entered.");
+    }
+})
+
+bot.login(token);

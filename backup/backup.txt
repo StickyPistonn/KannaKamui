@@ -1,0 +1,280 @@
+bot.on('message', msg => {
+    if (msg.content === "Hi Kanna") {
+        msg.reply('Hi Oniichan!');
+    } else if (msg.content === "Kanna, are you a virgin?")
+        msg.reply("No i'm not, someone else fucked me earlier :sob:")
+    if (msg.content === "I'm the real Kanna") {
+        msg.reply("No! I'm the real Kanna");
+    } else if (msg.content === "Kanna, how are you?")
+        msg.reply("I'm fine thanks.");
+    if (msg.content === "Kanna, what is our motto here?") {
+        msg.reply("Lolis are for patting not for fapping.");
+    } else if (msg.content === "Kanna, who is your favorite?")
+        msg.reply("My favorite person is you! :smile:")
+    if (msg.content === "Kanna, who is our daddy?") {
+        msg.reply("Our daddy is Dark!");
+    } else if (msg.content === "Kanna, how babies are made?")
+        msg.reply("Here are the 7 steps to getting pregnant fast, Get prepped for pregnancy. Decide: Wing it, or plan it? Understand the menstrual cycle, Use apps + tests to identify your most fertile time, Read your body's signs.Cervical mucus, Drop in basal body temperature.")
+    if (msg.content === "Good girl Kanna!") {
+        msg.reply("Thanks <:KannaBlob:745694053189943297>");
+    } else if (msg.content === "Kanna, what do you like to eat?")
+        msg.reply("I basically eat everything except you <:KannaHeart:745695029896544367>")
+    if (msg.content === "Kanna, who is your mommy?") {
+        msg.reply("My mommy is nez!");
+    } else if (msg.content === "Kanna, do you love me?")
+        msg.reply("Yes i do!")
+    if (msg.content === "Kanna, i love you") {
+        msg.reply("Who the fuck are you? <:MiddleFinger:745896053332639775>")
+    } else if (msg.content === "Kanna, i love you!") {
+        msg.reply("I love you too <:idk:745896118629564436>");
+    }
+    if (msg.content === "Kanna, what do you dream about?") {
+        msg.reply("Usually i dream about you :heart:");
+    } else if (msg.content === "Kanna, how old are you?") {
+        msg.reply("I'm 7000 years old :smile:");
+    }
+})
+
+bot.on('message', message => {
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase();
+
+    if (command === 'staff') {
+        let modRole = "745702507271028817";
+        let creatorRole = "726545810455789709";
+        if (message.member.roles.cache.has(modRole) || message.member.roles.cache.has(creatorRole)) {
+            message.channel.send('You are a staff');
+        }
+        else {
+            message.channel.send("You weren't staff");
+        }
+    } else if (command === 'youtube') {
+        message.channel.send('https://www.youtube.com/channel/UCdFjVGzu-zixxsg9XjMkOBg');
+    }
+    if (command === 'members') {
+        let modRole = "745702507271028817";
+        let creatorRole = "726545810455789709";
+        if (message.member.roles.cache.has(modRole) || message.member.roles.cache.has(creatorRole)) {
+            message.channel.send(`Total members: ${message.guild.memberCount}`);
+        }
+        else {
+            message.channel.send("You don't have permission to run this command!");
+        }
+    } else if (command === 'shutdown') {
+        if (message.author.id != "593733192905654272") return message.channel.send("I'm sorry, you're not my Sticky Oniichan :sweat_smile:")
+
+        try {
+            message.channel.send("Bot is shutting down...")
+            process.exit()
+        } catch (e) {
+            message.channel.send("Error: $(e.message")
+        }
+
+    } if (command === 'dance') {
+        message.channel.send("<a:KannaHyper:745895021303300148>");
+    } else if (command === 'die') {
+        message.channel.send("<:Kannakms:746693290786816022>");
+    }
+    if (command === 'purge') {
+        if (message.member.hasPermission("MANAGE_MESSAGES")) {
+            const deleteCount = parseInt(args[0], 10)
+            const deleteMessage = `Deleted ${deleteCount} messages.`;
+
+            if (!deleteCount || deleteCount < 2 || deleteCount > 100) return message.reply('Input a number between 2 - 100.');
+
+            const fetched = await message.channel.fetchMessages({
+                limit: deleteCount
+            });
+
+            message.channel.bulkDelete(fetched)
+            .catch(error => console.log(`Cannot delete messages because of ${error}`))
+            .then(() => message.channel.send(deleteMessage))
+            .catch(err => {
+                console.log(err);
+            });
+        } else {
+            message.channel.send("You don't have permission to run this command!")
+        }
+    }
+
+});
+
+bot.on('message', message => {
+    let arg = message.content.slice(prefix.length).split(" ");
+
+    switch (arg[0]) {
+        case 'kick':
+            let modRole = "745702507271028817";
+            let creatorRole = "726545810455789709";
+            if (message.member.roles.cache.has(modRole) || message.member.roles.cache.has(creatorRole)) {
+                if (!arg[1]) message.channel.send('You need to tag a person!');
+
+                const user = message.mentions.users.first();
+
+                if (user) {
+                    const member = message.guild.member(user);
+
+                    if (member) {
+                        member.kick('You have been kicked!').then(() => {
+                            message.reply('User has been kicked!');
+                        }).catch(err => {
+                            message.reply('Request failed');
+                            console.log(err);
+                        });
+                    } else {
+                        message.reply("Can't find user")
+                    }
+                } else {
+                    message.reply("User isn't in this server");
+                }
+            } else
+                message.channel.send("You don't have permission to run this command!")
+            break;
+    }
+})
+
+bot.on('message', message => {
+    let arg = message.content.slice(prefix.length).split(" ");
+
+    switch (arg[0]) {
+        case 'ban':
+            let modRole = "745702507271028817";
+            let creatorRole = "726545810455789709";
+            if (message.member.roles.cache.has(modRole) || message.member.roles.cache.has(creatorRole)) {
+                if (!arg[1]) message.channel.send('You need to tag a person!');
+
+                const user = message.mentions.users.first();
+
+                if (user) {
+                    const member = message.guild.member(user);
+
+                    if (member) {
+                        member.ban({ reason: 'Breaking rules!' }).then(() => {
+                            message.reply('User has been banned!');
+                        }).catch(err => {
+                            message.reply('Request failed');
+                            console.log(err);
+                        });
+                    } else {
+                        message.reply("Can't find user")
+                    }
+                } else {
+                    message.reply("User isn't in this server");
+                }
+            } else
+                message.channel.send("You don't have permission to run this command!")
+            break;
+    }
+})
+
+bot.on('message', message => {
+    let args = message.content.slice(prefix.length).split(" ");
+
+    switch (args[0]) {
+        case 'credit':
+            const embed = new Discord.MessageEmbed()
+                .setTitle("Credits")
+                .addField("Friends", credit);
+            message.channel.send(embed);
+            break;
+    }
+})
+
+bot.on('message', message => {
+    let args = message.content.slice(prefix.length).split(" ");
+
+    switch (args[0]) {
+        case 'creator':
+            const embed = new Discord.MessageEmbed()
+                .setDescription("Made with love")
+                .setColor(0x33F9FF)
+                .setTitle("Creator")
+                .addField('Developer', owner);
+            message.channel.send(embed);
+            break;
+    }
+})
+
+bot.on('message', message => {
+    let args = message.content.slice(prefix.length).split(" ");
+
+    switch (args[0]) {
+        case 'help':
+            const embed = new Discord.MessageEmbed()
+                .setTitle("Commands")
+                .addField("Current commands", help);
+            message.channel.send(embed);
+            break;
+    }
+})
+
+bot.on('message', message => {
+    let arg = message.content.slice(prefix.length).split(" ");
+
+    switch (arg[0]) {
+        case 'permmute':
+            let modRole = "745702507271028817";
+            let creatorRole = "726545810455789709";
+            if (message.member.roles.cache.has(modRole) || message.member.roles.cache.has(creatorRole)) {
+                if (!arg[1]) message.channel.send('You need to tag a person!');
+
+                const user = message.mentions.users.first();
+
+                if (user) {
+                    const member = message.guild.member(user);
+
+                    if (member) {
+                        member.roles.add("745494941400170548").then(() => {
+                            message.reply('User has been permanent muted!');
+                        }).catch(err => {
+                            message.reply('Request failed');
+                            console.log(err);
+                        });
+                    } else {
+                        message.reply("Can't find user")
+                    }
+                } else {
+                    message.reply("User isn't in this server");
+                }
+            } else
+                message.channel.send("You don't have permission to run this command!")
+            break;
+    }
+})
+
+bot.on('message', message => {
+    let arg = message.content.slice(prefix.length).split(" ");
+
+    switch (arg[0]) {
+        case 'unmute':
+            let modRole = "745702507271028817";
+            let creatorRole = "726545810455789709";
+            if (message.member.roles.cache.has(modRole) || message.member.roles.cache.has(creatorRole)) {
+                if (!arg[1]) message.channel.send('You need to tag a person!');
+
+                const user = message.mentions.users.first();
+
+                if (user) {
+                    const member = message.guild.member(user);
+
+                    if (member) {
+                        member.roles.remove("745494941400170548").then(() => {
+                            message.reply('User has been unmuted!');
+                        }).catch(err => {
+                            message.reply('Request failed');
+                            console.log(err);
+                        });
+                    } else {
+                        message.reply("Can't find user")
+                    }
+                } else {
+                    message.reply("User isn't in this server");
+                }
+            } else
+                message.channel.send("You don't have permission to run this command!")
+            break;
+    }
+})
+
