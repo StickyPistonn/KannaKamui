@@ -26,14 +26,14 @@ module.exports.run = async (bot, message, args) => {
             member.roles.add(role.id);
             const embed = new Discord.MessageEmbed()
                 .setColor(0x43B581)
-                .setDescription(`<:check:750364210176983182> ***${member.user.tag}  has been muted***`)
+                .setDescription(`<:check:750364210176983182> ***${member.user.tag}  was muted***`)
             message.channel.send(embed)
 
             setTimeout( function () {
                 member.roles.remove(role.id);
                 const embed = new Discord.MessageEmbed()
                 .setColor(0x43B581)
-                .setDescription(`<:check:750364210176983182> ***${member.user.tag}  has been unmuted***`)
+                .setDescription(`<:check:750364210176983182> ***${member.user.tag}  was unmuted***`)
                 message.channel.send(embed)
             }, ms(time));
 
