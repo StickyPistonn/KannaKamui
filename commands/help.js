@@ -8,8 +8,8 @@ module.exports.run = async (bot, message, args) => {
     //Normal usage of (prefix)help without any args. (Shows all of the commands and you should set the commands yourself)
     if(!helpArgs[0]) {
         var embed = new Discord.MessageEmbed()
-            .setAuthor(`<:info:750679575964418059> Commands:`)
-            .setDescription('purge | mute | unmute | kick')
+            .setAuthor(`Commands:`)
+            .setDescription('purge | mute | unmute | kick | vcban | vcunban | math | report')
             .setColor(0x337FD5)
             
         message.channel.send(embed);
@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
             
             command = bot.commands.get(command);
             var embed = new Discord.MessageEmbed()
-            .setAuthor(`<:info:750679575964418059> ${command.config.name} Command`)
+            .setAuthor(`${command.config.name} Command`)
             .setDescription(`
             - **Description** ${command.config.description || "There's no Description for this command."}
             - **Usage:** ${command.config.usage || "No Usage"}
