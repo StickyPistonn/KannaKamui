@@ -14,6 +14,11 @@ module.exports.run = async (bot, message, args) => {
             .setColor(0x43B581)
             .setDescription(`<:check:750364210176983182> ***${member.user.tag}  was unmuted***`)
             message.channel.send(embed)
+        } else {
+        const embed2 = new Discord.MessageEmbed()
+            .setColor(0x43B581)
+            .setDescription(`***User isn't muted***`)
+            message.channel.send(embed2)
         }
 }
 
