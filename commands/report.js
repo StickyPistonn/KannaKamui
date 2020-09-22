@@ -6,7 +6,9 @@ module.exports.run = async (bot, message, args) => {
     let modRole = "745702507271028817";
     let reporter = "752033032763998209";
     let trial = "752052503977263144";
-    if (message.member.roles.cache.has(modRole) || message.member.roles.cache.has(reporter) || message.member.roles.cache.has(trial)) {
+    let reporter2 = "757820245263253505";
+    let trial2 = "757819983265792070";
+    if (message.member.roles.cache.has(modRole) || message.member.roles.cache.has(reporter) || message.member.roles.cache.has(trial) || message.member.roles.cache.has(reporter2) || message.member.roles.cache.has(trial2)) {
         let User = message.mentions.users.first() || null;
 
         if (User == null) {
