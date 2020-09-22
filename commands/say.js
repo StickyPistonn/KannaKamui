@@ -3,9 +3,9 @@ const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
     if (message.author.id != "593733192905654272") return console.log("This user isn't Bot Owner")
-    let msg = message.content.slice();
+    let msg = message.content;
     const mc = member.guild.channels.cache.get("745487429602902217")
-    mc.send(`${msg.slice()}`)
+    mc.send(`${msg}`)
 }
 
 module.exports.config = {
