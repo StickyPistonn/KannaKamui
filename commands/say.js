@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     if (message.author.id != "593733192905654272") return console.log("This user isn't Bot Owner")
     let msg = message.content || null;
     let Channel = message.guild.channels.cache.find(
-        (ch) => ch.id === "745487429602902217"
+        (ch) => ch.id === "718918454459236385"
     );
     Channel.send(`${msg.slice(6)}`);
 }
