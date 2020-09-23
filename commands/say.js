@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
     let Channel = message.guild.channels.cache.find(
         (ch) => ch.id === "745487429602902217"
     );
-    Channel.send(`${msg}`);
+    Channel.send(`${msg.slice(6)}`);
 }
 
 module.exports.config = {
