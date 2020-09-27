@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
-    if (message.author.id != "593733192905654272") return console.log("This user doesn't have access")
+    if (message.author.id != "404763865847562241") return console.log("This user doesn't have access")
     let msg = message.content || null;
     let Channel = message.guild.channels.cache.find(
         (ch) => ch.id === "753340152105009163"
